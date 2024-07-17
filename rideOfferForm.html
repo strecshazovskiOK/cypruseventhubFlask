@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>Tailwind Starter</title>
+    <style>
+        .custom-bg-header {
+            background-color: #000000;
+        }
+        .custom-hover:hover {
+            background-color: #1E616A;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen flex-col">
+  <header class="flex items-center justify-between bg-gray-900 px-4 py-3 text-white shadow-md md:px-6">
+    <a class="text-xl font-bold" href="/">
+      CyprusEventHub
+    </a>
+    <nav class="hidden space-x-4 md:flex">
+      <a class="hover:underline" href="/login">
+        Login
+      </a>
+      <a class="hover:underline" href="/register">
+        Register
+      </a>
+      <a class="hover:underline" href="/exploreEvents">
+        Events
+      </a>
+      <a class="hover:underline" href="/offerRide">
+        Offer Ride
+      </a>
+    </nav>
+    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 md:hidden">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-6 w-6"
+      >
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+      <span class="sr-only">Toggle navigation menu</span>
+    </button>
+  </header>
+  <main class="flex-1">
+    <section class="flex min-h-[calc(100vh_-_theme(spacing.16))] items-center justify-center bg-gray-100 px-4 py-12 dark:bg-gray-950">
+      <div class="mx-auto w-full max-w-2xl space-y-8">
+        {%if msg%}
+        <a href="/registerCar">
+        <h2 class="underline mt-6 text-center text-3xl font-bold tracking-tight text-blue-600 dark:text-gray-50">
+          {{msg}}
+          </h2>
+          </a>
+        {%else%}
+        <div>
+          <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
+            Offer Ride
+          </h2>
+          <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+            Fill out the form to offer a ride.
+          </p>
+        </div>
+        <form class="space-y-6" action="/offerRide" method="POST">
+          <div>
+            <label
+              class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              for="seats-available"
+            >
+              Seats Available
+            </label>
+            <div class="mt-1">
+              <input
+                class="h-10 bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder-gray-500"
+                id="seats-available"
+                required=""
+                type="number"
+                name="seats-available"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              for="from-location"
+            >
+              From Location
+            </label>
+            <div class="mt-1 relative">
+              <label>
+                <select
+                  class="h-10 bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder-gray-500"
+                id="from-location"
+                name="from-location"
+                required="required"
+                >
+                  <option value="">Select location</option>
+                  <option value="lefkosia">Lefkoşa</option>
+                  <option value="girne">Girne</option>
+                  <option value="gazimağusa">Gazimağusa</option>
+                  <option value="güzelyurt">Güzelyurt</option>
+                  <option value="iskele">İskele</option>
+                  <option value="lefke">Lefke</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <div>
+            <label
+              class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              for="date-time"
+            >
+              Date and Time
+            </label>
+            <div class="mt-1">
+              <input
+                class="h-10 bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder-gray-500"
+                id="date-time"
+                required=""
+                type="datetime-local"
+                name="date-time"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              for="event"
+            >
+              Event
+            </label>
+            <div class="mt-1 relative">
+              <label>
+                <select
+                  class="h-10 bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder-gray-500"
+                id="event"
+                name="event"
+                required="required"
+                >
+                  <option value="">Select event</option>
+                  {%for event in events%}
+                  <option value="{{event[0]}}">{{event[1]}} -- {{event[2]}} -- {{event[3]}}</option>
+                  {% endfor %}
+                </select>
+              </label>
+            </div>
+          </div>
+          <div>
+            <label
+              class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              for="price"
+            >
+              Price
+            </label>
+            <div class="mt-1">
+              <input
+                class="h-10 bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder-gray-500"
+                id="price"
+                required=""
+                type="number"
+                name="price"
+              />
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <button
+                    style="background: #000;"
+              type="submit"
+              class="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 px-4 py-2"
+            >
+              Offer Ride
+            </button>
+          </div>
+        </form>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+</body>
+</html>

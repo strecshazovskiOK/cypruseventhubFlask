@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>Tailwind Starter</title>
+    <style>
+        .custom-bg-header {
+            background-color: #000000;
+        }
+        .custom-hover:hover {
+            background-color: #1E616A;
+        }
+    </style>
+</head>
+<body>
+<div class="flex min-h-screen flex-col">
+  <header class="flex items-center justify-between custom-bg-header px-4 py-3 text-white shadow-md md:px-6">
+    <a class="text-xl font-bold" href="/">
+      CyprusEventHub
+    </a>
+    <nav class="hidden space-x-4 md:flex">
+
+      <a class="hover:underline" href="/exploreEvents">
+        Events
+      </a>
+    </nav>
+    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 md:hidden">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-6 w-6"
+      >
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+      <span class="sr-only">Toggle navigation menu</span>
+    </button>
+  </header>
+  <main class="flex-1">
+    <section class="flex min-h-[calc(100vh_-_theme(spacing.16))] items-center justify-center bg-gray-100 px-4 py-12 dark:bg-gray-950">
+      <div class="mx-auto w-full max-w-2xl space-y-8">
+        <div>
+          <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
+            Organize Event
+          </h2>
+          <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+            Fill out the form to organize a new event.
+          </p>
+        </div>
+        <form class="space-y-6" action="/createEvent" method="POST">
+          <div>
+            <label
+              class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              for="event-name"
+            >
+              Event Name
+            </label>
+            <div class="mt-1">
+              <input
+                class="h-10 bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder-gray-500"
+                id="event-name"
+                required=""
+                type="text"
+                name="event-name"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              for="max-tickets"
+            >
+              Maximum Number of Tickets
+            </label>
+            <div class="mt-1">
+              <input
+                class="h-10 bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder-gray-500"
+                id="max-tickets"
+                required="required"
+                type="number"
+                name="max-tickets"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              for="event-date-time"
+            >
+              Date and Time
+            </label>
+            <div class="mt-1">
+              <input
+                class="h-10 bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder-gray-500"
+                id="event-date-time"
+                required="required"
+                type="datetime-local"
+                name="event-date-time"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              for="event-type"
+            >
+              Event Type
+            </label>
+            <div class="mt-1">
+              <select
+                class="h-10 bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder-gray-500"
+                id="event-type"
+                name="event-type"
+                required="required"
+              >
+                <option value="">Select event type</option>
+                <option value="party">Party</option>
+                <option value="concert">Concert</option>
+                <option value="theatre">Theatre</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label
+              class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              for="event-location"
+            >
+              Location
+            </label>
+            <div class="mt-1">
+              <select
+                class="h-10 bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder-gray-500"
+                id="event-location"
+                name="event-location"
+                required="required"
+              >
+                <option value="">Select location</option>
+                <option value="lefkosia">Lefkoşa</option>
+                <option value="girne">Girne</option>
+                <option value="gazimağusa">Gazimağusa</option>
+                <option value="güzelyurt">Güzelyurt</option>
+                <option value="iskele">İskele</option>
+                <option value="lefke">Lefke</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label
+              class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              for="event-description"
+            >
+              Description
+            </label>
+            <div class="mt-1">
+              <textarea
+                class="min-h-[80px] bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder-gray-500"
+                id="event-description"
+                name="event-description"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div>
+            <label
+              class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              for="ticket-price"
+            >
+              Ticket Price
+            </label>
+            <div class="mt-1">
+              <input
+                class="h-10 bg-background text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-950 dark:text-gray-50 dark:placeholder-gray-500"
+                id="ticket-price"
+                required="required"
+                type="number"
+                name="ticket-price"
+              />
+            </div>
+          </div>
+          <div>
+            <button
+              class="items-center whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 flex w-full justify-center rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-[#006400] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-black dark:hover:bg-[#006400] dark:focus:ring-indigo-400 dark:focus:ring-offset-gray-950"
+              type="submit"
+            >
+              Organize Event
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

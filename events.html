@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>Tailwind Starter</title>
+    <style>
+        .custom-bg-header {
+            background-color: #000000;
+        }
+        .custom-hover:hover {
+            background-color: #1E616A;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex min-h-screen flex-col">
+        <header class="flex items-center justify-between bg-gray-900 px-4 py-3 text-white shadow-md md:px-6">
+            <a class="text-xl font-bold" href="/" rel="ugc">
+                CyprusEventHub
+            </a>
+            <nav class="hidden space-x-4 md:flex">
+                <a class="hover:underline" href="/login" rel="ugc">Login</a>
+                <a class="hover:underline" href="/exploreEvents" rel="ugc">Events</a>
+            </nav>
+            <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+                    <line x1="4" x2="20" y1="12" y2="12"></line>
+                    <line x1="4" x2="20" y1="6" y2="6"></line>
+                    <line x1="4" x2="20" y1="18" y2="18"></line>
+                </svg>
+                <span class="sr-only">Toggle navigation menu</span>
+            </button>
+        </header>
+        <main class="flex-1">
+            <section class="bg-gray-100 dark:bg-gray-950 py-12">
+                <div class="container mx-auto px-4 md:px-6">
+                    <p id="msg"></p>
+                    {% if msg %}
+                    <h2 id="error" style="color: red" class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
+                      {{msg}}
+                    </h2>
+                    {% endif %}
+                    {% if records %}
+                    <div class="mb-8">
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50">Upcoming Events</h2>
+                        <p class="mt-2 text-gray-600 dark:text-gray-400">Explore our upcoming events and plan your visit.</p>
+                    </div>
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {% for record in records %}
+                        <div class="rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+                            <div class="p-6 space-y-4">
+                                <div class="space-y-2">
+                                    <h3 class="text-lg font-semibold">#{{ record[6] }} {{ record[0] }}</h3>
+                                    <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                                            <path d="M8 2v4"></path>
+                                            <path d="M16 2v4"></path>
+                                            <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                                            <path d="M3 10h18"></path>
+                                        </svg>
+                                        <span>{{ record[1] }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>
+                                        <span>{{ record[2] }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                        <span>{{ record[3] }}</span>
+                                    </div>
+                                    <p class="text-sm leading-relaxed text-gray-600 dark:text-gray-400">{{ record[4] }}</p>
+                                    <div class="flex items-center justify-between">
+                                        <div class="font-semibold text-gray-900 dark:text-gray-50">{{ record[5] }} TR</div>
+                                        {%if role == 'customer'%}
+                                        <form method="POST" action="/bookEvent">
+                                            <input type="hidden" name="event_id" value="{{ record[6] }}">
+                                            <input type="hidden" name="event_name" value="{{ record[0] }}">
+                                            <input type="hidden" name="event_date" value="{{ record[1] }}">
+                                            <input type="hidden" name="event_time" value="{{ record[2] }}">
+                                            <input type="hidden" name="event_location" value="{{ record[3] }}">
+                                            <input type="hidden" name="event_description" value="{{ record[4] }}">
+                                            <input type="hidden" name="event_price" value="{{ record[5] }}">
+                                            <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                                                Book
+                                            </button>
+                                        </form>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    {% endif %}
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

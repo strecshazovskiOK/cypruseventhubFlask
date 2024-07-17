@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <title>Tailwind Starter</title>
+    <style>
+        .custom-bg-header {
+            background-color: #000000;
+        }
+        .custom-hover:hover {
+            background-color: #1E616A;
+        }
+    </style>
+</head>
+<body>
+<header class="flex items-center justify-between custom-bg-header px-4 py-3 text-white shadow-md md:px-6">
+  <a class="hover:underline text-xl font-bold" href="/">
+    CyprusEventHub
+  </a>
+    {% if not username %}
+  <nav class="hidden space-x-4 md:flex">
+    <a class="hover:underline" href="/login">
+      Login
+    </a>
+    <a class="hover:underline" href="/register">
+      Register
+    </a>
+  </nav>
+  {% endif %}
+    {% if username %}
+  {%if role == 'organizer'%}
+  <nav class="hidden space-x-4 md:flex">
+    <a class="hover:underline" href="/createEvent">
+      Create Event
+    </a>
+    <a class="hover:underline" href="/offerRide">
+        Offer Ride
+      </a>
+    </nav>
+    {%else%}
+    <nav class="hidden space-x-4 md:flex">
+    <a class="hover:underline" href="/myBookings">
+      My Bookings
+    </a>
+    <a class="hover:underline" href="/offerRide">
+        Offer Ride
+      </a>
+  </nav>
+  {%endif%}
+        <div class="relative">
+  <button class="flex items-center space-x-2 focus:outline-none" onclick="toggleDropdown()">
+    <span class="sr-only">Open user menu</span>
+    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A4.992 4.992 0 017 13h10a4.992 4.992 0 011.879 4.804M15 13a3 3 0 10-6 0M15 13V7a3 3 0 00-6 0v6m0 0a3 3 0 10-6 0m6-3H6a4 4 0 014-4h0a4 4 0 014 4h-1"></path>
+    </svg>
+  </button>
+  <div id="dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+    <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+    <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+  </div>
+</div>
+
+    {% endif %}
+  <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 md:hidden">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="h-6 w-6"
+    >
+      <line x1="4" x2="20" y1="12" y2="12"></line>
+      <line x1="4" x2="20" y1="6" y2="6"></line>
+      <line x1="4" x2="20" y1="18" y2="18"></line>
+    </svg>
+    <span class="sr-only">Toggle navigation menu</span>
+  </button>
+</header>
+<main class="flex-1">
+  <section class="relative h-[60vh] w-full overflow-hidden">
+    <img src="https://i.hizliresim.com/ejtxufo.png" alt="CyprusEventHub Hero" class="object-cover object-center w-full h-full" />
+    <div class="absolute inset-0 bg-gray-900/50 flex items-center justify-center">
+      <div class="text-center text-white">
+        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center" style="margin-top: 12cm;">
+          <div class="rounded-md shadow mr-4">
+            <a
+              class="custom-hover flex w-full items-center justify-center rounded-md border border-transparent bg-[#168D8F] px-8 py-3 text-base font-medium text-white md:py-4 md:px-10 md:text-lg"
+              href="/exploreEvents"
+            >
+              Explore Events
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+    function toggleDropdown() {
+        var dropdown = document.getElementById('dropdown');
+        dropdown.classList.toggle('hidden');
+    }
+</script>
+</body>
+</html>

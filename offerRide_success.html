@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+    <title>Tailwind Starter</title>
+    <style>
+        .custom-bg-header {
+            background-color: #000000;
+        }
+        .custom-hover:hover {
+            background-color: #1E616A;
+        }
+        .custom-bg-text{
+            background-color: #1E616A;
+        }
+    </style>
+</head>
+<div class="flex min-h-screen flex-col">
+  <header class="flex items-center justify-between custom-bg-header px-4 py-3 text-white shadow-md md:px-6">
+    <a class="text-xl font-bold" href="/">
+      CyprusEventHub
+    </a>
+    <nav class="hidden space-x-4 md:flex">
+      <a class="hover:underline" href="/profile">
+        Profile
+      </a>
+    </nav>
+    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 md:hidden">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="h-6 w-6"
+      >
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+      <span class="sr-only">Toggle navigation menu</span>
+    </button>
+  </header>
+  <button
+    class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 md:hidden"
+    type="button"
+    aria-haspopup="dialog"
+    aria-expanded="false"
+    aria-controls="radix-:r4e:"
+    data-state="closed"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="h-6 w-6"
+    >
+      <line x1="4" x2="20" y1="12" y2="12"></line>
+      <line x1="4" x2="20" y1="6" y2="6"></line>
+      <line x1="4" x2="20" y1="18" y2="18"></line>
+    </svg>
+    <span class="sr-only">Toggle navigation menu</span>
+  </button>
+  <main class="flex-1">
+    <section class="flex min-h-[calc(100vh_-_theme(spacing.16))] items-center justify-center bg-gray-100 px-4 py-12 dark:bg-gray-950">
+      <div class="mx-auto w-full max-w-2xl space-y-8">
+        <div>
+          <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
+            Your ride has been offered successfully!
+          </h2>
+          <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+            You may go back to home page or visit your profile!
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
